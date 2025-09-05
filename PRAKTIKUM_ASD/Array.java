@@ -1,4 +1,4 @@
-package Algoritma_Struktur_Data;
+package PRAKTIKUM_ASD;
 
 public class Array {
     public static void main(String[] args) {
