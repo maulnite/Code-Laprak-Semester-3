@@ -25,13 +25,19 @@ public class Soal1 {
 
         System.out.println(array[n - 1] + " " + array[0]);
 
+        boolean isOdd = false;
         for (int i = 0; i < array.length; i++) {
             if (array[i] % 2 != 0) {
                 System.out.print(array[i] + " ");
+                isOdd = true;
             }
+        }
+        if (!isOdd) {
+            System.out.print("None");
         }
         System.out.println();
 
+        boolean isAnyPrime = false;
         for (int i = 0; i < array.length; i++) {
             boolean isPrime = true;
             if (array[i] < 2) {
@@ -45,9 +51,12 @@ public class Soal1 {
                 }
             }
             if (isPrime) {
+                isAnyPrime = true;
                 System.out.print(array[i] + " ");
             }
         }
+        if (!isAnyPrime)
+            System.out.println("None");
 
         input.close();
     }
