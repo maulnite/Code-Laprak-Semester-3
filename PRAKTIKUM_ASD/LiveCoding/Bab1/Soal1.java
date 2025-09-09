@@ -1,5 +1,3 @@
-package PRAKTIKUM_ASD.LiveCoding.Bab1;
-
 import java.util.*;
 
 public class Soal1 {
