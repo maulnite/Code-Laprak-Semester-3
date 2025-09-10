@@ -1,11 +1,29 @@
 package ASD;
 
+class SinglyNode {
+    Object data;
+    SinglyNode next;
+
+    SinglyNode() {
+    }
+
+    SinglyNode(Object data) {
+        this(data, null);
+    }
+
+    SinglyNode(Object data, SinglyNode next) {
+        this.data = data;
+        this.next = next;
+    }
+}
+
 public class SinglyLinkedList {
     SinglyNode head, tail;
     int size = 0;
 
     void init() {
         head = tail = null;
+        size = 0;
     }
 
     boolean isEmpty() {
@@ -21,7 +39,7 @@ public class SinglyLinkedList {
         if (isEmpty()) {
             head = tail = input;
         } else {
-            input.pointer = head;
+            input.next = head;
             head = input;
         }
         size++;
@@ -32,7 +50,7 @@ public class SinglyLinkedList {
         if (isEmpty()) {
             head = tail = input;
         } else {
-            tail.pointer = input;
+            tail.next = input;
             tail = input;
         }
         size++;
@@ -42,7 +60,7 @@ public class SinglyLinkedList {
         SinglyNode current = head;
 
         while (current != null && !current.data.equals(key)) {
-            current = current.pointer;
+            current = current.next;
         }
 
         if (current == null) {
@@ -52,8 +70,8 @@ public class SinglyLinkedList {
 
         SinglyNode input = new SinglyNode(data);
 
-        input.pointer = current.pointer;
-        current.pointer = input;
+        input.next = current.next;
+        current.next = input;
 
         if (current == tail) {
             tail = input;
@@ -78,7 +96,7 @@ public class SinglyLinkedList {
 
         while (current != null && !current.data.equals(key)) {
             previous = current;
-            current = current.pointer;
+            current = current.next;
         }
 
         if (current == null) {
@@ -87,8 +105,8 @@ public class SinglyLinkedList {
         }
 
         SinglyNode input = new SinglyNode(data);
-        previous.pointer = input;
-        input.pointer = current;
+        previous.next = input;
+        input.next = current;
 
         size++;
     }
@@ -99,7 +117,7 @@ public class SinglyLinkedList {
             return;
         }
 
-        head = head.pointer;
+        head = head.next;
         size--;
         if (isEmpty()) {
             tail = null;
@@ -116,10 +134,10 @@ public class SinglyLinkedList {
             head = tail = null;
         } else {
             SinglyNode current = head;
-            while (current.pointer != tail) {
-                current = current.pointer;
+            while (current.next != tail) {
+                current = current.next;
             }
-            current.pointer = null;
+            current.next = null;
             tail = current;
         }
         size--;
@@ -141,7 +159,7 @@ public class SinglyLinkedList {
 
         while (current != null && !current.data.equals(key)) {
             prev = current;
-            current = current.pointer;
+            current = current.next;
         }
 
         if (current == null) {
@@ -149,8 +167,9 @@ public class SinglyLinkedList {
             return;
         }
 
-        prev.pointer = current.pointer;
-        current.pointer = null;
+        prev.next = current.next;
+        current.next = null;
+        current.data = null;
 
         size--;
     }
@@ -168,7 +187,7 @@ public class SinglyLinkedList {
 
         SinglyNode current = head;
         for (int i = 0; i < index; i++) {
-            current = current.pointer;
+            current = current.next;
         }
         return current.data;
     }
@@ -176,14 +195,14 @@ public class SinglyLinkedList {
     int indexOf(Object key) {
         SinglyNode current = head;
         int index = 0;
-        while (current != null && !current.data.equals(key)) {
-            current = current.pointer;
+        while (current != null) {
+            if (current.data.equals(key)) {
+                return index;
+            }
+            current = current.next;
             index++;
         }
-        if (current == null) {
-            return -1;
-        }
-        return index;
+        return -1;
     }
 
     void removeAt(int index) {
@@ -201,22 +220,24 @@ public class SinglyLinkedList {
 
         for (int i = 0; i < index; i++) {
             prev = current;
-            current = current.pointer;
+            current = current.next;
         }
 
-        prev.pointer = current.pointer;
-        current.pointer = null;
+        prev.next = current.next;
+        current.next = null;
 
         size--;
     }
 
     void insertAt(int index, Object data) {
-        checkIndex(index);
+        if (index < 0 || index > size) {
+            throw new IndexOutOfBoundsException("Index " + index + " out of bounds, size = " + size);
+        }
 
         if (index == 0) {
             addFirst(data);
             return;
-        } else if (index == size - 1) {
+        } else if (index == size) {
             addLast(data);
             return;
         }
@@ -225,25 +246,16 @@ public class SinglyLinkedList {
         SinglyNode input = new SinglyNode(data);
 
         for (int i = 0; i < index - 1; i++) {
-            current = current.pointer;
+            current = current.next;
         }
-        input.pointer = current.pointer;
-        current.pointer = input;
+        input.next = current.next;
+        current.next = input;
 
         size++;
     }
 
     boolean contains(Object data) {
-        if (isEmpty())
-            return false;
-        SinglyNode current = head;
-        while (current != null) {
-            if (current.data.equals(data)) {
-                return true;
-            }
-            current = current.pointer;
-        }
-        return false;
+        return indexOf(data) != -1;
     }
 
     void print() {
@@ -253,29 +265,12 @@ public class SinglyLinkedList {
             SinglyNode current = head;
             while (current != null) {
                 System.out.print(current.data);
-                if (current.pointer != null) {
+                if (current.next != null) {
                     System.out.print(" -> ");
                 }
-                current = current.pointer;
+                current = current.next;
             }
             System.out.println();
         }
-    }
-}
-
-class SinglyNode {
-    Object data;
-    SinglyNode pointer;
-
-    SinglyNode() {
-    }
-
-    SinglyNode(Object data) {
-        this(data, null);
-    }
-
-    SinglyNode(Object data, SinglyNode pointer) {
-        this.data = data;
-        this.pointer = pointer;
     }
 }
