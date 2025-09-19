@@ -1,4 +1,4 @@
-package PRAKTIKUM_ASD.Bab2;
+package PRAKTIKUM_ASD.Bab4;
 
 public class Main {
     public static void main(String[] args) {

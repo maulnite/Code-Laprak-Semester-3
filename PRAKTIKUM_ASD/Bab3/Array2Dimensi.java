@@ -1,4 +1,4 @@
-package PRAKTIKUM_ASD.Bab_1;
+package PRAKTIKUM_ASD.Bab3;
 
 public class Array2Dimensi {
     public static void main(String[] args) {

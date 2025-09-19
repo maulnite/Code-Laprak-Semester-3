@@ -1,4 +1,4 @@
-package PRAKTIKUM_ASD.Bab2;
+package PRAKTIKUM_ASD.Bab4;
 
 class SinglyNode {
     Object data;
