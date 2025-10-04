@@ -113,7 +113,7 @@ public class SinglyLinkedList {
 
     void removeFirst() {
         if (isEmpty()) {
-            System.out.println("List is empty -from removeFirst()");
+            System.out.println("List is empty.");
             return;
         }
 
