@@ -1,4 +1,4 @@
-package ASD;
+package ASD.Materi;
 
 class NodePQ {
     Object data;

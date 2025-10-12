@@ -1,4 +1,4 @@
-package ASD;
+package ASD.Materi;
 
 public class QueueArray {
     private Object[] data;

@@ -1,4 +1,4 @@
-package ASD;
+package ASD.Materi;
 
 import java.util.Scanner;
 

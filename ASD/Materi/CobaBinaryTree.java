@@ -1,4 +1,4 @@
-package ASD;
+package ASD.Materi;
 
 public class CobaBinaryTree {
     public static void main(String[] args) {

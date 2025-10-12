@@ -1,4 +1,4 @@
-package ASD;
+package ASD.Materi;
 
 public class TestQueueLinkedList {
     public static void main(String[] args) {
