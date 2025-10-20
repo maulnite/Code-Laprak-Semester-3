@@ -36,6 +36,7 @@ public class PriorityQueueLinkedList {
             input.next = front;
             front = input;
             size++;
+            return;
         }
         NodePQ current = front;
         while (current.next != null && current.next.priority <= priority) {
