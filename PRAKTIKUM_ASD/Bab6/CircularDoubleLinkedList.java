@@ -106,13 +106,13 @@ public class CircularDoubleLinkedList {
 
     public static void main(String[] args) {
         CircularDoubleLinkedList cdll = new CircularDoubleLinkedList();
-        cdll.sisipDataDiAwal(new Integer(50));
-        cdll.sisipDataDiAwal(new Integer(60));
-        cdll.sisipDataDiAwal(new Integer(70));
-        cdll.sisipDataDiAwal(new Integer(8));
-        cdll.sisipDataDiAwal(new Integer(9));
-        cdll.sisipDataDiAwal(new Integer(90));
-        cdll.sisipDataDiAwal(new Integer(19));
+        // cdll.sisipDataDiAwal(new Integer(50));
+        // cdll.sisipDataDiAwal(new Integer(60));
+        // cdll.sisipDataDiAwal(new Integer(70));
+        // cdll.sisipDataDiAwal(new Integer(8));
+        // cdll.sisipDataDiAwal(new Integer(9));
+        // cdll.sisipDataDiAwal(new Integer(90));
+        // cdll.sisipDataDiAwal(new Integer(19));
         cdll.cetak("cdll Asal");
         cdll.sisipDataDiAkhir(10);
         cdll.cetak("cdll stl sisip diakhir");

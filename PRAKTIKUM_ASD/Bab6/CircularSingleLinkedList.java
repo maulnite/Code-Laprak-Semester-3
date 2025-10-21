@@ -122,13 +122,13 @@ public class CircularSingleLinkedList {
 
     public static void main(String[] args) {
         CircularSingleLinkedList csll = new CircularSingleLinkedList();
-        csll.sisipDataDiAwal(new Integer(50));
-        csll.sisipDataDiAwal(new Integer(60));
-        csll.sisipDataDiAwal(new Integer(70));
-        csll.sisipDataDiAwal(new Integer(8));
-        csll.sisipDataDiAwal(new Integer(9));
-        csll.sisipDataDiAwal(new Integer(90));
-        csll.sisipDataDiAwal(new Integer(19));
+        // csll.sisipDataDiAwal(new Integer(50));
+        // csll.sisipDataDiAwal(new Integer(60));
+        // csll.sisipDataDiAwal(new Integer(70));
+        // csll.sisipDataDiAwal(new Integer(8));
+        // csll.sisipDataDiAwal(new Integer(9));
+        // csll.sisipDataDiAwal(new Integer(90));
+        // csll.sisipDataDiAwal(new Integer(19));
         csll.cetak("csll Asal");
         csll.hapusData(8);
         csll.cetak("csll stl 8 dihapus");
