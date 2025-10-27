@@ -121,17 +121,45 @@ public class Tree {
         }
     }
 
+    public int getLevel(int dtCari) {
+        return getLevel(root, dtCari, 1);
+    }
+
+    private int getLevel(Node node, int dtCari, int level) {
+        if (node == null) {
+            return -1;
+        }
+
+        if (node.data == dtCari) {
+            return level;
+        }
+
+        if (dtCari < node.data) {
+            return getLevel(node.nodeKiri, dtCari, level + 1);
+        } else {
+            return getLevel(node.nodeKanan, dtCari, level + 1);
+        }
+    }
+
     public static void main(String args[]) {
         Tree Tree = new Tree();
-        int nilai;
-        Random randomNumber = new Random();
+        // int nilai;
+        // Random randomNumber = new Random();
+
+        // System.out.println("sisip nilai data berikut : ");
+
+        // for (int i = 1; i <= 10; i++) {
+        // nilai = randomNumber.nextInt(100);
+        // System.out.print(nilai + " ");
+        // Tree.sisipDtNode(nilai);
+        // }
+
+        int[] data = { 42, 1, 38, 55, 31, 90, 73, 94, 39, 27 };
 
         System.out.println("sisip nilai data berikut : ");
-
-        for (int i = 1; i <= 10; i++) {
-            nilai = randomNumber.nextInt(100);
-            System.out.print(nilai + " ");
-            Tree.sisipDtNode(nilai);
+        for (int i : data) {
+            System.out.print(i + " ");
+            Tree.sisipDtNode(i);
         }
 
         System.out.println("\n\nPreorder traversal");
@@ -145,8 +173,12 @@ public class Tree {
         System.out.println();
 
         System.out.println();
-        System.out.println("Jumlah Node: " + Tree.countNodes());
-        System.out.println("Jumlah Daun: " + Tree.countLeaves());
-        System.out.println("Tinggi Pohon: " + Tree.getHeight());
+        System.out.println("\nJumlah Node: " + Tree.countNodes());
+        System.out.println("\nJumlah Daun: " + Tree.countLeaves());
+        System.out.println("\nTinggi Pohon: " + Tree.getHeight());
+        System.out.println("\n\nCari Level: ");
+        System.out.println("Level Node 31: " + Tree.getLevel(31));
+        System.out.println("Level Node 94: " + Tree.getLevel(94));
+        System.out.println("Level Node 38: " + Tree.getLevel(38));
     }
 }
