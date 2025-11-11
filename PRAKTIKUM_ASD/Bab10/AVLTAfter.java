@@ -1,14 +1,14 @@
 package PRAKTIKUM_ASD.Bab10;
 
-class Node {
+class NodeB {
     int data;
     int tinggi; // tinggi node
-    Node pKiri;
-    Node pKanan;
-    Node pInduk;// pointer ke induk
+    NodeB pKiri;
+    NodeB pKanan;
+    NodeB pInduk;// pointer ke induk
     // constructor node
 
-    public Node(int dt, int tg, Node pKi, Node pKa, Node pI) {
+    public NodeB(int dt, int tg, NodeB pKi, NodeB pKa, NodeB pI) {
         this.data = dt;
         this.tinggi = tg;
         this.pKiri = pKi;
@@ -18,7 +18,7 @@ class Node {
 }
 
 public class AVLTAfter {
-    private Node root;
+    private NodeB root;
 
     public AVLTAfter() {
         root = null;
@@ -28,7 +28,7 @@ public class AVLTAfter {
      * Method helper baru untuk mengupdate tinggi node
      * Berdasarkan logika di modul.
      */
-    private void updateTinggi(Node node) {
+    private void updateTinggi(NodeB node) {
         if (node != null) {
             node.tinggi = Math.max(tinggi(node.pKiri), tinggi(node.pKanan)) + 1;
         }
@@ -37,7 +37,7 @@ public class AVLTAfter {
     // cari dt di tree, mengembalikan true jika ditemukan
     // dan false jika tidak
     public boolean cariDt(int dt) {
-        Node temp = root;
+        NodeB temp = root;
         while (temp != null) {
             if (dt == temp.data)
                 return true;
@@ -56,10 +56,10 @@ public class AVLTAfter {
      * Latihan 1: Method putar Kiri (untuk kasus RR)
      * Logika diambil dari modul baris 129-158
      */
-    private Node rotasiKiri(Node x) {
-        Node parent = x.pInduk;
-        Node y = x.pKanan;
-        Node T2 = y.pKiri;
+    private NodeB rotasiKiri(NodeB x) {
+        NodeB parent = x.pInduk;
+        NodeB y = x.pKanan;
+        NodeB T2 = y.pKiri;
 
         // Lakukan rotasi
         y.pKiri = x;
@@ -83,10 +83,10 @@ public class AVLTAfter {
      * Latihan 2: Method putar Kanan (untuk kasus LL)
      * Logika diambil dari modul baris 92-121
      */
-    private Node rotasiKanan(Node y) {
-        Node parent = y.pInduk;
-        Node x = y.pKiri;
-        Node T2 = x.pKanan;
+    private NodeB rotasiKanan(NodeB y) {
+        NodeB parent = y.pInduk;
+        NodeB x = y.pKiri;
+        NodeB T2 = x.pKanan;
 
         // Lakukan rotasi
         x.pKanan = y;
@@ -110,7 +110,7 @@ public class AVLTAfter {
      * Latihan 3: Method putar Kiri Kanan (untuk kasus LR)
      * Logika diambil dari modul "kasus 3 dari algoritma AVL"
      */
-    private Node rotasiKiriKanan(Node z) {
+    private NodeB rotasiKiriKanan(NodeB z) {
         // Panggil method Latihan 1
         z.pKiri = rotasiKiri(z.pKiri);
 
@@ -122,7 +122,7 @@ public class AVLTAfter {
      * Latihan 4: Method putar Kanan Kiri (untuk kasus RL)
      * Logika diambil dari modul "kasus 4 dari algoritma AVL"
      */
-    private Node rotasiKananKiri(Node z) {
+    private NodeB rotasiKananKiri(NodeB z) {
         // Panggil method Latihan 2
         z.pKanan = rotasiKanan(z.pKanan);
 
@@ -135,11 +135,11 @@ public class AVLTAfter {
     // tree diseimbangkan menggunakan algoritma AVL
     public boolean sisipDt(int dt) {
         if (root == null) {
-            root = new Node(dt, 1, null, null, null);
+            root = new NodeB(dt, 1, null, null, null);
             return true;
         } else {
-            Node temp = root;
-            Node prev = null;
+            NodeB temp = root;
+            NodeB prev = null;
             while (temp != null) {
                 if (dt == temp.data)
                     return false;
@@ -151,18 +151,18 @@ public class AVLTAfter {
                     temp = temp.pKanan;
                 }
             }
-            temp = new Node(dt, 1, null, null, prev);
+            temp = new NodeB(dt, 1, null, null, prev);
             if (dt < prev.data)
                 prev.pKiri = temp;
             else
                 prev.pKanan = temp;
-            Node z = prev;
+            NodeB z = prev;
 
             while (z != null) {
                 updateTinggi(z);
                 int balance = tinggi(z.pKiri) - tinggi(z.pKanan);
 
-                Node parent = z.pInduk;
+                NodeB parent = z.pInduk;
 
                 if (balance > 1) {
                     if (tinggi(z.pKiri.pKiri) >= tinggi(z.pKiri.pKanan)) {
@@ -196,7 +196,7 @@ public class AVLTAfter {
         return root.tinggi;
     }
 
-    private int tinggi(Node node) {
+    private int tinggi(NodeB node) {
         if (node == null)
             return 0;
         else
@@ -212,7 +212,7 @@ public class AVLTAfter {
         inOrder(root);
     }
 
-    private void inOrder(Node r) {
+    private void inOrder(NodeB r) {
         if (r == null)
             return;
         inOrder(r.pKiri);
@@ -221,7 +221,7 @@ public class AVLTAfter {
     }
 
     // hitung node-node dari tree
-    private int jumlahNode(Node node) {
+    private int jumlahNode(NodeB node) {
         if (node == null)
             return 0;
         else

@@ -1,14 +1,14 @@
 package PRAKTIKUM_ASD.Bab10;
 
-class Node {
+class NodeA {
     int data;
     int tinggi; // tinggi node
-    Node pKiri;
-    Node pKanan;
-    Node pInduk;// pointer ke induk
+    NodeA pKiri;
+    NodeA pKanan;
+    NodeA pInduk;// pointer ke induk
     // constructor node
 
-    public Node(int dt, int tg, Node pKi, Node pKa, Node pI) {
+    public NodeA(int dt, int tg, NodeA pKi, NodeA pKa, NodeA pI) {
         this.data = dt;
         this.tinggi = tg;
         this.pKiri = pKi;
@@ -18,7 +18,7 @@ class Node {
 }
 
 public class AVLTBefore {
-    private Node root;
+    private NodeA root;
 
     public AVLTBefore() {
         root = null;
@@ -27,7 +27,7 @@ public class AVLTBefore {
     // cari dt di tree, mengembalikan true jika ditemukan
     // dan false jika tidak
     public boolean cariDt(int dt) {
-        Node temp = root;
+        NodeA temp = root;
         while (temp != null) {
             if (dt == temp.data)
                 return true;
@@ -48,14 +48,14 @@ public class AVLTBefore {
     public boolean sisipDt(int dt) {
         if (root == null) {
             // sisip dt di root
-            root = new Node(dt, 1, null, null, null);
+            root = new NodeA(dt, 1, null, null, null);
             return true;
         }
         // tree tidak kosong
         else {
             // mulai dari root
-            Node temp = root;
-            Node prev = null;
+            NodeA temp = root;
+            NodeA prev = null;
             // cari lokasi penyisipan dt
             while (temp != null) {
                 if (dt == temp.data)
@@ -72,7 +72,7 @@ public class AVLTBefore {
                 }
             }
             // buat node baru
-            temp = new Node(dt, 1, null, null, prev);
+            temp = new NodeA(dt, 1, null, null, prev);
             if (dt < prev.data)
                 prev.pKiri = temp;// sisip di pKiri
             else
@@ -87,8 +87,8 @@ public class AVLTBefore {
                 // kasus 1 algoritma AVL
                 else if (tinggi(temp.pKiri) - tinggi(temp.pKanan) >= 2
                         && tinggi(temp.pKiri.pKiri) >= tinggi(temp.pKiri.pKanan)) {
-                    Node parent = temp.pInduk;
-                    Node pKiri = temp.pKiri;
+                    NodeA parent = temp.pInduk;
+                    NodeA pKiri = temp.pKiri;
                     temp.pKiri = pKiri.pKanan;
                     if (temp.pKiri != null)
                         temp.pKiri.pInduk = temp;
@@ -110,8 +110,8 @@ public class AVLTBefore {
                 // case 2 algoritma AVl
                 else if (tinggi(temp.pKanan) - tinggi(temp.pKiri) >= 2
                         && tinggi(temp.pKanan.pKanan) >= tinggi(temp.pKanan.pKiri)) {
-                    Node parent = temp.pInduk;
-                    Node pKanan = temp.pKanan;
+                    NodeA parent = temp.pInduk;
+                    NodeA pKanan = temp.pKanan;
                     temp.pKanan = pKanan.pKiri;
                     if (temp.pKanan != null)
                         temp.pKanan.pInduk = temp;
@@ -133,8 +133,8 @@ public class AVLTBefore {
                 // kasus 3 dari algoritma AVL
                 else if (tinggi(temp.pKiri) - tinggi(temp.pKanan) >= 2
                         && tinggi(temp.pKiri.pKanan) >= tinggi(temp.pKiri.pKiri)) {
-                    Node parent = temp.pInduk;
-                    Node pKiripKanan = temp.pKiri.pKanan;
+                    NodeA parent = temp.pInduk;
+                    NodeA pKiripKanan = temp.pKiri.pKanan;
                     temp.pKiri.pKanan = pKiripKanan.pKiri;
                     if (temp.pKiri.pKanan != null)
                         temp.pKiri.pKanan.pInduk = temp.pKiri;
@@ -164,8 +164,8 @@ public class AVLTBefore {
                 else if (tinggi(temp.pKanan) -
                         tinggi(temp.pKiri) >= 2 &&
                         tinggi(temp.pKanan.pKiri) >= tinggi(temp.pKanan.pKanan)) {
-                    Node parent = temp.pInduk;
-                    Node pKananpKiri = temp.pKanan.pKiri;
+                    NodeA parent = temp.pInduk;
+                    NodeA pKananpKiri = temp.pKanan.pKiri;
                     temp.pKanan.pKiri = pKananpKiri.pKanan;
                     if (temp.pKanan.pKiri != null)
                         temp.pKanan.pKiri.pInduk = temp.pKanan;
@@ -200,7 +200,7 @@ public class AVLTBefore {
         return root.tinggi;
     }
 
-    private int tinggi(Node node) {
+    private int tinggi(NodeA node) {
         if (node == null)
             return 0;
         else
@@ -216,7 +216,7 @@ public class AVLTBefore {
         inOrder(root);
     }
 
-    private void inOrder(Node r) {
+    private void inOrder(NodeA r) {
         if (r == null)
             return;
         inOrder(r.pKiri);
@@ -225,7 +225,7 @@ public class AVLTBefore {
     }
 
     // hitung node-node dari tree
-    private int jumlahNode(Node node) {
+    private int jumlahNode(NodeA node) {
         if (node == null)
             return 0;
         else

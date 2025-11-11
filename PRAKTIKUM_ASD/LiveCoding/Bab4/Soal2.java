@@ -24,38 +24,38 @@ class Pasien {
 }
 
 class SinglyLinkedList {
-    class Node {
+    class NodeC {
         Pasien pasien;
-        Node next;
+        NodeC next;
 
-        Node(Pasien pasien) {
+        NodeC(Pasien pasien) {
             this.pasien = pasien;
         }
     }
 
-    Node head;
+    NodeC head;
 
     private void addFirst(Pasien pasien) {
-        Node input = new Node(pasien);
+        NodeC input = new NodeC(pasien);
         input.next = head;
         head = input;
     }
 
-    private void addAfter(Node prev, Pasien pasien) {
+    private void addAfter(NodeC prev, Pasien pasien) {
         if (prev == null)
             return;
-        Node input = new Node(pasien);
+        NodeC input = new NodeC(pasien);
         input.next = prev.next;
         prev.next = input;
     }
 
     private void addLast(Pasien pasien) {
-        Node input = new Node(pasien);
+        NodeC input = new NodeC(pasien);
         if (head == null) {
             head = input;
             return;
         }
-        Node current = head;
+        NodeC current = head;
         while (current.next != null) {
             current = current.next;
         }
@@ -70,7 +70,7 @@ class SinglyLinkedList {
 
     void tambah(Pasien pasienBaru) {
         if (head == null) {
-            head = new Node(pasienBaru);
+            head = new NodeC(pasienBaru);
             return;
         }
 
@@ -78,7 +78,7 @@ class SinglyLinkedList {
             if (head.pasien.levelPrioritas != 1) {
                 addFirst(pasienBaru);
             } else {
-                Node current = head;
+                NodeC current = head;
                 while (current.next != null && current.next.pasien.levelPrioritas == 1) {
                     current = current.next;
                 }
@@ -88,7 +88,7 @@ class SinglyLinkedList {
             if (head.pasien.levelPrioritas == 3) {
                 addFirst(pasienBaru);
             } else {
-                Node current = head;
+                NodeC current = head;
                 while (current.next != null && current.next.pasien.levelPrioritas != 3) {
                     current = current.next;
                 }
@@ -122,8 +122,8 @@ class SinglyLinkedList {
             return;
         }
 
-        Node current = head;
-        Node previous = null;
+        NodeC current = head;
+        NodeC previous = null;
         while (current != null && !current.pasien.idPasien.equals(idPasien)) {
             previous = current;
             current = current.next;
@@ -150,7 +150,7 @@ class SinglyLinkedList {
         }
 
         int amountPasien = 0;
-        Node current = head;
+        NodeC current = head;
         while (current != null) {
             amountPasien++;
             current = current.next;
